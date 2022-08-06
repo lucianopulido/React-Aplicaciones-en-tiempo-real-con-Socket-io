@@ -8,6 +8,7 @@ const socketio = require('socket.io')
 
 const path = require('path')
 const Socket = require("./Socket");
+const cors = require('cors')
 
 class Server {
 
@@ -25,6 +26,8 @@ class Server {
     middlewares() {
         //Desplegar el directorio public
         this.app.use(express.static(path.resolve(__dirname, '../public')))
+
+        this.app.use(cors())
     }
 
     configurarSockets() {
