@@ -1,13 +1,15 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
+import {SocketContext} from "../hooks/SocketContext";
 
-const BandAdd = ({crearBanda}) => {
+const BandAdd = () => {
 
     const [valor, setValor] = useState('');
+    const {socket} = useContext(SocketContext);
 
     const onAddBand = (e) => {
         e.preventDefault()
         if (valor.trim().length > 0) {
-            crearBanda(valor)
+            socket.emit('crear-banda', {nombre: valor})
             setValor('')
         }
     }
